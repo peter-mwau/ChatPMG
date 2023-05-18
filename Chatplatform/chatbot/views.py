@@ -13,7 +13,7 @@ def chat(request):
             query = form.cleaned_data.get('query')
      
 
-            response = requests.post("https://drsong-chatglm-6b-chatbot.hf.space/run/predict", json={
+            response = requests.post("https://elitecode-chatglm-6b-chatbot.hf.space/run/predict", json={
 	        "data": [
 		        query,
 		        "Hello",
