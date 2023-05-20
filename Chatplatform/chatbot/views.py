@@ -42,7 +42,7 @@ import openai
 
 
 def chat(request):
-    openai.api_key = "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"
+    openai.api_key = "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"
     if request.method == 'POST':
         form = ChatbotForm(request.POST)
         if form.is_valid():
