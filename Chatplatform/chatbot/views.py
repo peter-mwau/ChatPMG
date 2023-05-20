@@ -42,6 +42,7 @@ import openai
 
 
 def chat(request):
+    openai.api_key = "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"
     if request.method == 'POST':
         form = ChatbotForm(request.POST)
         if form.is_valid():
@@ -49,7 +50,7 @@ def chat(request):
             query = form.cleaned_data.get('query')
 
             URL = "https://api.openai.com/v1/chat/completions"
-            # api_key = "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"
+            
 
             payload = {
             "model": "gpt-3.5-turbo",
