@@ -51,45 +51,33 @@ def chat(request):
 
             URL = "https://api.openai.com/v1/chat/completions"
             
+            messages = [
+            {"role": "system", "content": "You are a kind helpful assistant."},
+            ]
 
-            payload = {
-            "model": "gpt-3.5-turbo",
-            "messages": [{"role": "user", "content": query}],
-            "temperature" : 1.0,
-            "top_p":1.0,
-            "n" : 1,
-            "stream": False,
-            "presence_penalty":0,
-            "frequency_penalty":0,
-            }
+            while True:
+                # message = input("User : ")
+                message = query
+                if message:
+                    messages.append(
+                    {"role": "user", "content": message},
+                    )
+                    chat = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo", messages=messages
+                    )
+    
+                reply = chat.choices[0].message.content
+                print(f"ChatGPT: {reply}")
+                # messages.append({"role": "assistant", "content": reply})
+                response = reply
 
-            headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {openai.api_key}"
-            }
+                form = ChatbotForm(initial={'response': response})
 
-            response = requests.post(URL, headers=headers, json=payload, stream=False)
-     
-
-            # response = requests.post("https://elitecode-chatglm-6b-chatbot.hf.space/run/predict", json={
-	        # "data": [
-		    #     query,
-		    #     "Hello",
-	        # ]
-            # }).json()
-
-            # data = response["data"]
-            # # print(data)
-            # response = data[1]
-            print(response.content)
-
-            form = ChatbotForm(initial={'response': response})
-
-            context = {
+                context = {
                 'form': form,
                 'response': response,
-            }
-            return render(request, 'chatUI.html', context)
+                }
+                return render(request, 'chatUI.html', context)
     else:
         form = ChatbotForm()
         context = {
