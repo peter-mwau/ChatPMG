@@ -8,6 +8,7 @@
     <title>Chat Page</title>
 </head>
 <body id="hed">
+    <form action="" method="post">
     {% csrf_token %}
     <div id="container" class="h-auto w-auto">
         <!-- <img src="" class="rounded-full w-20 ml-3 border-2"> -->
@@ -36,11 +37,11 @@
         <!-- <div id="message" class="w-auto bg-white p-5 shadow-2xl flex flex-col h-auto overflow-y-auto">
             <p class="p-4 m-2 border-2 shadow-2xl rounded-2xl" id="p" >Yes Buddy!</p>
         </div> -->
-        
-        <div class="h-auto w-2/3 place-self-start space-y-12 h-auto overflow-y-auto" id="messages">
+
+        <div class="h-auto w-2/3 place-self-start space-y-12 h-auto overflow-y-auto" id="query">
             <p class="p-4 m-2 border-2 shadow-2xl rounded-2xl" id="p">{{form.query}}</p>
         </div>
-        <div class="h-auto w-2/3 place-self-end space-y-12 ml-[33%]">
+        <div class="h-auto w-2/3 place-self-end space-y-12 ml-[33%]" id="response">
             <p class="p-4 m-2 border-2 shadow-2xl rounded-2xl">{{form.response}}</p>
         </div>
         <div class="border-1 mt-[36%] w-full p-4 h-20 flex flex shadow-2xl">
@@ -49,6 +50,7 @@
             <button type="submit" class="flex-end ml-10 shadow-2xl bg-black text-white font-bold p-3 rounded-xl hover:bg-gray-200 hover:text-black hover:shadow-2xl" id="btn">Submit</button>
         </div>
     </div>
+    </form>
 </body>
 <script>
     var container = document.getElementById('togglebtn');
@@ -118,6 +120,23 @@
         input.setAttribute('placeholder', 'Search..');
         input.setAttribute('class', 'border-2 rounded-md p-3 flex-start w-5/6 shadow-2xl ml-[60px]');
         search.appendChild(input);
+    }
+    {% comment %} get the query and response and the append then respectively {% endcomment %}
+    var query = document.getElementById('query');
+    var response = document.getElementById('response');
+    var btn = document.getElementById('btn');
+    btn.onclick = function(){
+        var query = document.getElementById('query').value;
+        var response = document.getElementById('response').value;
+        var p = document.getElementById('p');
+        p.innerHTML = query;
+        query.appendChild(p);
+        var p = document.getElementById('p');
+        p.innerHTML = response;
+        response.appendChild(p);
+        //clear input
+        //document.getElementById('query').value = "";
+        //document.getElementById('response').value = "";
     }
 </script>
 </html>

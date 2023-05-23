@@ -188,6 +188,7 @@ def chat(request):
         ]
         }).json()
         data = response["data"]
+        print(data)
         #decode the json data
         # convert to string
         data = json.dumps(data) 
