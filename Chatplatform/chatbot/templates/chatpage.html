@@ -44,7 +44,8 @@
             <p class="p-4 m-2 border-2 shadow-2xl rounded-2xl">{{form.response}}</p>
         </div>
         <div class="border-1 mt-[36%] w-full p-4 h-20 flex flex shadow-2xl">
-            <input type="text" placeholder="Prompt.." class="border-2 rounded-md p-3 flex-start w-5/6 shadow-2xl ml-[60px]" id="input">
+            {% comment %} <input type="text" placeholder="Prompt.." class="border-2 rounded-md p-3 flex-start w-5/6 shadow-2xl ml-[60px]" id="input"> {% endcomment %}
+            <p type="text" placeholder="Prompt.." class="border-2 rounded-md p-3 flex-start w-5/6 shadow-2xl ml-[60px]" id="input">{{form.query}}</p>
             <button type="submit" class="flex-end ml-10 shadow-2xl bg-black text-white font-bold p-3 rounded-xl hover:bg-gray-200 hover:text-black hover:shadow-2xl" id="btn">Submit</button>
         </div>
     </div>

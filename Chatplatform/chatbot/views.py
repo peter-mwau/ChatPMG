@@ -195,7 +195,7 @@ def chat(request):
         data = json.loads(data)  
         output = data[0]['label']
         print(output)
-        formoutput = ChatbotForm(initial={'output': output, 'query': query})
+        formoutput = ChatbotForm(initial={'response': output, 'query': query})
         # print(formoutput)
         # form = ChatbotForm(request.POST or None)
         # r = Records_log(Query=userInput, Emotion=output)
